@@ -12,7 +12,7 @@ DHT dht(DHTPIN, DHTTYPE);
 // --- Network & Broker Configuration ---
 const char* ssid        = "Cyril";      // Replace with your Wi-Fi Name
 const char* password    = "cta09004";  // Replace with your Wi-Fi Password
-const char* mqtt_server = "10.217.38.130";      // Your PC's Local IPv4 Address
+const char* mqtt_server = "10.46.89.130";      // Your PC's Local IPv4 Address
 const int   mqtt_port   = 1883;
 
 WiFiClient espClient;
