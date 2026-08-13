@@ -8,7 +8,7 @@ import plotly.graph_objs as go
 import paho.mqtt.client as mqtt
 
 # --- CONFIGURATION ---
-MQTT_BROKER = "10.46.89.130"  # or "localhost"
+MQTT_BROKER = "10.136.230.130"  # or "localhost"
 MQTT_PORT = 1883
 MQTT_TOPIC = "esp32/smart_classroom/data"
 

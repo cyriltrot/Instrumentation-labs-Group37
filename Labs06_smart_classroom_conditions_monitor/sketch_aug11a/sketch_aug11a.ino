@@ -6,9 +6,9 @@
 // ==========================================================
 // CONFIGURATION & PIN DEFINITIONS
 // ==========================================================
-const char* ssid         = "Purgatory";
-const char* password     = "sherif100%";
-const char* mqtt_server  = "10.127.164.130"; 
+const char* ssid         = "Cyril";
+const char* password     = "cta09004";
+const char* mqtt_server  = "10.136.230.130"; 
 const int   mqtt_port    = 1883;
 const char* mqtt_topic   = "esp32/smart_classroom/data";
 
