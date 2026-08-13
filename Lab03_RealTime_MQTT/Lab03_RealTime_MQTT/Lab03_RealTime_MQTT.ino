@@ -14,7 +14,7 @@
 // Local Network Credentials & Broker Configuration
 const char* ssid = "Cyril";               // Local Wi-Fi Access Point name
 const char* password = "cta09004";          // Wi-Fi network password
-const char* mqtt_server = "10.46.89.130"; // Host PC local IP address running Mosquitto MQTT broker
+const char* mqtt_server = "10.95.243.130"; // Host PC local IP address running Mosquitto MQTT broker
 
 // Communication Interface Instantiations
 WiFiClient espClient;                     // Creates an unencrypted TCP client for network traffic

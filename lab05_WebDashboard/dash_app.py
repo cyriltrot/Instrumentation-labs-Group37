@@ -52,58 +52,80 @@ app.layout = dbc.Container([
     # Title Header
     dbc.Row([
         dbc.Col(
-            html.Div([
-                html.H1("Real-Time IoT Sensor Dashboard", className="text-center text-primary fw-bold mt-3 mb-1"),
-                html.P("Live Telemetry via MQTT & Mosquitto Broker", className="text-center text-muted mb-4")
-            ]),
-            width=12
-        )
+            dbc.Card([
+                dbc.CardBody([
+                    html.H1("Real-Time IoT Sensor Dashboard", className="text-center text-primary fw-bold mt-3 mb-1"),
+                    html.P("Live Telemetry via MQTT & Mosquitto Broker", className="text-center text-muted mb-3"),
+                    html.P("Monitor your ESP32 sensor readings with a responsive dashboard layout.", className="text-center text-light")
+                ])
+            ], color="dark", className="mb-4 shadow-sm")
+        , width=12)
     ]),
-    
+
     # KPI Metric Cards Row
     dbc.Row([
         dbc.Col(dbc.Card([
             dbc.CardBody([
-                html.H6("Temperature", className="card-title text-danger"),
+                html.H6("Temperature", className="card-title text-danger mb-2"),
                 html.H3(id="val-temp", className="card-text fw-bold", children="-- °C")
             ])
-        ], color="secondary", outline=True), md=3, sm=6, className="mb-3"),
+        ], color="secondary", outline=True), lg=3, md=6, sm=12),
         
         dbc.Col(dbc.Card([
             dbc.CardBody([
-                html.H6("Humidity", className="card-title text-info"),
+                html.H6("Humidity", className="card-title text-info mb-2"),
                 html.H3(id="val-hum", className="card-text fw-bold", children="-- %")
             ])
-        ], color="secondary", outline=True), md=3, sm=6, className="mb-3"),
+        ], color="secondary", outline=True), lg=3, md=6, sm=12),
         
         dbc.Col(dbc.Card([
             dbc.CardBody([
-                html.H6("Light Intensity", className="card-title text-warning"),
+                html.H6("Light Intensity", className="card-title text-warning mb-2"),
                 html.H3(id="val-light", className="card-text fw-bold", children="-- ADC")
             ])
-        ], color="secondary", outline=True), md=3, sm=6, className="mb-3"),
+        ], color="secondary", outline=True), lg=3, md=6, sm=12),
         
         dbc.Col(dbc.Card([
             dbc.CardBody([
-                html.H6("Distance", className="card-title text-success"),
+                html.H6("Distance", className="card-title text-success mb-2"),
                 html.H3(id="val-dist", className="card-text fw-bold", children="-- cm")
             ])
-        ], color="secondary", outline=True), md=3, sm=6, className="mb-3"),
-    ]),
+        ], color="secondary", outline=True), lg=3, md=6, sm=12),
+    ], className="g-3 mb-4"),
 
-    # 2x2 Grid Layout for Graphs
+    # Graph Grid Layout
     dbc.Row([
-        dbc.Col(dbc.Card(dcc.Graph(id='graph-temperature', config={'displayModeBar': False}), className="p-2 shadow-sm"), md=6, className="mb-4"),
-        dbc.Col(dbc.Card(dcc.Graph(id='graph-humidity', config={'displayModeBar': False}), className="p-2 shadow-sm"), md=6, className="mb-4"),
-    ]),
+        dbc.Col(dbc.Card([
+            dbc.CardHeader(html.H5("Temperature")),
+            dbc.CardBody(dcc.Graph(id='graph-temperature', config={'displayModeBar': False}))
+        ], className="shadow-sm h-100"), lg=6, md=12),
+
+        dbc.Col(dbc.Card([
+            dbc.CardHeader(html.H5("Humidity")),
+            dbc.CardBody(dcc.Graph(id='graph-humidity', config={'displayModeBar': False}))
+        ], className="shadow-sm h-100"), lg=6, md=12),
+    ], className="g-4 mb-4"),
     
     dbc.Row([
-        dbc.Col(dbc.Card(dcc.Graph(id='graph-light', config={'displayModeBar': False}), className="p-2 shadow-sm"), md=6, className="mb-4"),
-        dbc.Col(dbc.Card(dcc.Graph(id='graph-distance', config={'displayModeBar': False}), className="p-2 shadow-sm"), md=6, className="mb-4"),
-    ]),
-    
+        dbc.Col(dbc.Card([
+            dbc.CardHeader(html.H5("Light Intensity")),
+            dbc.CardBody(dcc.Graph(id='graph-light', config={'displayModeBar': False}))
+        ], className="shadow-sm h-100"), lg=6, md=12),
+
+        dbc.Col(dbc.Card([
+            dbc.CardHeader(html.H5("Distance")),
+            dbc.CardBody(dcc.Graph(id='graph-distance', config={'displayModeBar': False}))
+        ], className="shadow-sm h-100"), lg=6, md=12),
+    ], className="g-4 mb-4"),
+
+    dbc.Row([
+        dbc.Col(dbc.Card([
+            dbc.CardBody(html.P("Live dashboard updates every 2 seconds. Adjust your MQTT source or Mosquitto broker settings as needed.", className="mb-0 text-muted"))
+        ], color="dark", className="shadow-sm"), width=12)
+    ], className="mb-4"),
+
     dcc.Interval(id='interval-component', interval=2000, n_intervals=0)
-], fluid=True, className="px-4")
+], fluid=True, className="px-4 py-4")
 
 # Reusable function for consistent graph styling
 def make_figure(x, y, title, y_title, color):
